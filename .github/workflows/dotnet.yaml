@@ -13,14 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup MSBuild path
-      uses: microsoft/setup-msbuild@v1
-
-    - name: Restore NuGet packages
-      run: msbuild -t:restore -p:Configuration=Release
-
-    - name: Build solution
-      run: msbuild -p:Configuration=Release
-
-    - name: Test solution
-      run: dotnet test -p:Configuration=Release
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'build'
+        arguments: '--configuration Release'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        arguments: '--configuration Release --no-build'
