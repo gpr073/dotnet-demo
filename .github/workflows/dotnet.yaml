@@ -16,20 +16,17 @@ jobs:
     - name: Setup MSBuild path
       uses: microsoft/setup-msbuild@v1
 
+    - name: Setup VSTest
+      uses: darenm/Setup-VSTest@v1
+
     - name: Restore NuGet packages
       run: msbuild -t:restore -p:Configuration=Release
 
     - name: Build solution
       run: msbuild -p:Configuration=Release
 
-    - name: VSTest
-      uses: microsoft-approved-actions/vstest@master
-      with:
-        testAssembly: MyApp.Tests.dll
-        searchFolder: ./MyApp.Tests/
-
-    - name: Test solution
-      run: msbuild -t:VSTest -p:Configuration=Release
+    - name: Run Tests
+      run: vstest.console.exe .\MyApp.Tests\bin\Release\MyApp.Tests.dll
 
 # name: .NET Framework Workflow
 
