@@ -16,17 +16,20 @@ jobs:
     - name: Setup MSBuild path
       uses: microsoft/setup-msbuild@v1
 
-    - name: Navigate to Workspace
-      run: cd $GITHUB_WORKSPACE
-
     - name: Restore NuGet packages
       run: msbuild -t:restore -p:Configuration=Release
 
     - name: Build solution
       run: msbuild -p:Configuration=Release
 
+    - name: VSTest
+      uses: microsoft-approved-actions/vstest@master
+      with:
+        testAssembly: MyApp.Tests.dll
+        searchFolder: ./MyApp.Tests/
+
     - name: Test solution
-      run: msbuild -t:VSTest .\MyApp.Tests\bin\Release\MyApp.Tests.dll
+      run: msbuild -t:VSTest -p:Configuration=Release
 
 # name: .NET Framework Workflow
 
