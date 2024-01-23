@@ -24,5 +24,3 @@ jobs:
 
     - name: Test solution
       run: dotnet test --configuration Release
-
-This is the github actions yaml
