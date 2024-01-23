@@ -60,4 +60,4 @@ jobs:
           msbuild.exe solution.sln /p:platform="Any CPU" /p:configuration="Release"
         
       - name: Run Tests
-        run: vstest.console.exe .\tests\MyApp.Tests\bin\Release\MyApp.Tests.dll
+        run: vstest.console.exe .\MyApp.Tests\bin\Release\MyApp.Tests.dll
