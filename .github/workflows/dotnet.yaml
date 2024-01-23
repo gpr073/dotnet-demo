@@ -13,12 +13,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'build'
-        arguments: '--configuration Release'
-        
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'test'
-        arguments: '--configuration Release --no-build'
+    - name: Setup MSBuild path
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Restore NuGet packages
+      run: msbuild -t:restore -p:Configuration=Release
+
+    - name: Build solution
+      run: msbuild -p:Configuration=Release
+
+    - name: Test solution
+      run: dotnet test --configuration Release
+
+This is the github actions yaml
