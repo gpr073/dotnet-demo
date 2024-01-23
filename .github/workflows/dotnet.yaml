@@ -1,0 +1,26 @@
+name: .NET Framework Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup MSBuild path
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Restore NuGet packages
+      run: msbuild -t:restore -p:Configuration=Release
+
+    - name: Build solution
+      run: msbuild -p:Configuration=Release
+
+    - name: Test solution
+      run: msbuild -t:VSTest -p:Configuration=Release
