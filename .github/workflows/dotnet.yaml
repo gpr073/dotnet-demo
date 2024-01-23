@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@v2
@@ -23,4 +23,4 @@ jobs:
       run: msbuild -p:Configuration=Release
 
     - name: Test solution
-      run: msbuild -t:VSTest -p:Configuration=Release
+      run: dotnet test -p:Configuration=Release
