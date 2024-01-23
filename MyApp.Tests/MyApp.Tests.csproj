@@ -46,6 +46,9 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyApp\MyApp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="ProgramTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
