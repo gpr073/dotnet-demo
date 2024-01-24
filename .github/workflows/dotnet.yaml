@@ -20,10 +20,10 @@ jobs:
       run: cd $GITHUB_WORKSPACE
 
     - name: Add sln
-      run: dotnet sln add .\MyApp.Tests\MyApp.Test.csproj
+      run: dotnet sln add ./MyApp.Tests/MyApp.Test.csproj
 
     - name: Add References
-      run: dotnet add .\MyApp.Tests\MyApp.Test.csproj reference .\MyApp\MyApp.csproj
+      run: dotnet add ./MyApp.Tests/MyApp.Test.csproj reference ./MyApp/MyApp.csproj
 
     - name: Cleaning
       run: dotnet clean
