@@ -30,6 +30,8 @@ jobs:
 
     # - name: Change Directory
     #   run: cd .\MyApp.Tests
+    - name: Print
+      run: ls -R ${{ github.workspace }}/bin/Debug
 
     - name: Run Tests
       run: dotnet test .\MyApp.Tests\bin\Debug\MyApp.Tests.dll
