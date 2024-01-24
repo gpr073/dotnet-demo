@@ -19,17 +19,17 @@ jobs:
     # - name: Add sln
     #   run: dotnet sln add ./MyApp.Tests/MyApp.Test.csproj
 
-    # - name: Add References
-    #   run: dotnet add ./MyApp.Tests/MyApp.Test.csproj reference ./MyApp/MyApp.csproj
-
     # - name: Cleaning
     #   run: dotnet clean
 
     - name: Build solution
       run: dotnet build .\MyApp\MyApp.csproj
 
-    - name: Change Directory
-      run: cd .\MyApp.Tests
+    - name: Add References
+      run: dotnet add ./MyApp.Tests/MyApp.Test.csproj reference ./MyApp/MyApp.csproj
+
+    # - name: Change Directory
+    #   run: cd .\MyApp.Tests
 
     - name: Run Tests
       run: dotnet test
