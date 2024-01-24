@@ -25,14 +25,14 @@ jobs:
     - name: Build solution
       run: dotnet build .\MyApp\MyApp.csproj
 
-    - name: Add References
-      run: dotnet add ./MyApp.Tests/MyApp.Test.csproj reference ./MyApp/MyApp.csproj
+    # - name: Add References
+    #   run: dotnet add .\MyApp.Tests\MyApp.Test.csproj reference .\MyApp\MyApp.csproj
 
     # - name: Change Directory
     #   run: cd .\MyApp.Tests
 
     - name: Run Tests
-      run: dotnet test
+      run: dotnet test .\MyApp.Tests\bin\Debug\MyApp.Tests.dll
 
 
 # name: .NET Framework Workflow
