@@ -23,7 +23,7 @@ jobs:
     #   run: dotnet clean
 
     - name: Build solution
-      run: dotnet build .\MyApp\MyApp.csproj
+      run: dotnet build .\MyApp\MyApp.csproj --configuration Release
 
     # - name: Add References
     #   run: dotnet add .\MyApp.Tests\MyApp.Test.csproj reference .\MyApp\MyApp.csproj
