@@ -11,31 +11,22 @@ jobs:
     runs-on: windows-2019
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
-    - name: Restore packages
-      run: dotnet restore
+    - name: Setup MSBuild path
+      uses: microsoft/setup-msbuild@v1
 
-    # - name: Add sln
-    #   run: dotnet sln add ./MyApp.Tests/MyApp.Test.csproj
+    - name: Setup VSTest
+      uses: darenm/Setup-VSTest@v1
 
-    # - name: Cleaning
-    #   run: dotnet clean
+    - name: Restore NuGet packages
+      run: msbuild -t:restore -p:Configuration=Debug
 
     - name: Build solution
-      run: dotnet build .\MyApp\MyApp.csproj --configuration Debug
-
-    # - name: Add References
-    #   run: dotnet add .\MyApp.Tests\MyApp.Test.csproj reference .\MyApp\MyApp.csproj
-
-    # - name: Change Directory
-    #   run: cd .\MyApp.Tests
-    - name: Print
-      run: ls -R ${{ github.workspace }}\MyApp.Tests\bin\Debug
+      run: msbuild -p:Configuration=Debug
 
     - name: Run Tests
-      run: dotnet test .\MyApp.Tests\bin\Debug\MyApp.Tests.dll
-
+      run: vstest.console.exe .\MyApp.Tests\bin\Debug\MyApp.Tests.dll
 
 # name: .NET Framework Workflow
 
@@ -50,19 +41,27 @@ jobs:
 #     runs-on: windows-2019
 
 #     steps:
-#     - uses: actions/checkout@v2
+#     - uses: actions/checkout@v4
 
-#     - name: Setup MSBuild path
-#       uses: microsoft/setup-msbuild@v1
+#     - name: Restore packages
+#       run: dotnet restore
 
-#     - name: Setup VSTest
-#       uses: darenm/Setup-VSTest@v1
+#     # - name: Add sln
+#     #   run: dotnet sln add ./MyApp.Tests/MyApp.Test.csproj
 
-#     - name: Restore NuGet packages
-#       run: msbuild -t:restore -p:Configuration=Debug
+#     # - name: Cleaning
+#     #   run: dotnet clean
 
 #     - name: Build solution
-#       run: msbuild -p:Configuration=Debug
+#       run: dotnet build .\MyApp\MyApp.csproj --configuration Debug
+
+#     # - name: Add References
+#     #   run: dotnet add .\MyApp.Tests\MyApp.Test.csproj reference .\MyApp\MyApp.csproj
+
+#     # - name: Change Directory
+#     #   run: cd .\MyApp.Tests
+#     - name: Print
+#       run: ls -R ${{ github.workspace }}\MyApp.Tests\bin\Debug
 
 #     - name: Run Tests
-#       run: vstest.console.exe .\MyApp.Tests\bin\Debug\MyApp.Tests.dll
+#       run: dotnet test .\MyApp.Tests\bin\Debug\MyApp.Tests.dll
