@@ -1,12 +1,37 @@
-using System;
+// using System;
 
-namespace MyApp
+// namespace MyApp
+// {
+//     public class Program
+//     {
+//         public static void Main(string[] args)
+//         {
+//             Console.WriteLine("Hello, world!");
+//         }
+//     }
+// }
+
+using System;
+using System.Collections;
+
+class TCHLN
 {
-    public class Program
+    static public void Main()
     {
-        public static void Main(string[] args)
+
+        Stack my_stack = new Stack();
+
+        my_stack.Push("Tech");
+        my_stack.Push("Evolution");
+        my_stack.Push("Techolution");
+        my_stack.Push(null);
+        my_stack.Push(1234);
+        my_stack.Push(490.98);
+
+        foreach (var elem in my_stack)
         {
-            Console.WriteLine("Hello, world!");
+            Console.WriteLine(elem);
+            Console.ReadLine();
         }
     }
 }
